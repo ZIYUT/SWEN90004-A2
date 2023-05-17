@@ -1,3 +1,4 @@
+import java.util.*;
 public class Patch {
     public MuscleFiber fiber;
     public double anabolicHormone = 50;
@@ -15,12 +16,23 @@ public class Patch {
         /**
          * Simulate the hormonal effect of sleeping
          */
-        catabolicHormone = catabolicHormone - 0.5 * log(fiber.fiberSize, 10) * Params.sleepHours;
-        anabolicHormone = anabolicHormone - 0.48 * log(fiber.fiberSize,10) * Params.sleepHours;
+        catabolicHormone = catabolicHormone - 0.5 * log(catabolicHormone, 10) * Params.sleepHours;
+        anabolicHormone = anabolicHormone - 0.48 * log(anabolicHormone,10) * Params.sleepHours;
     }
 
     public void developMuscle(MuscleFiber fiber){
-        fiber.fiberSize = (fiber.fiberSize - 0.2*log(fiber.fiberSize, 10));
+        /**
+         *  Catabolic hormones must prepare the fibers for growth before the
+         *  anabolic hormones may add mass to the fibers
+         */
+        fiber.fiberSize = (fiber.fiberSize - 0.2 * log(catabolicHormone, 10));
+        if(log(anabolicHormone, 10)<=(1.05*log(catabolicHormone, 10))){
+            fiber.fiberSize = (fiber.fiberSize + 0.2 * log(anabolicHormone, 10));
+        }
+        else {
+            fiber.fiberSize = (fiber.fiberSize + 0.2 * 1.05* log(catabolicHormone, 10));
+        }
+        fiber.regulateMuscleFibers();
     }
 
 

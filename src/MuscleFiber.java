@@ -5,7 +5,10 @@ public class MuscleFiber {
 
     public MuscleFiber() {
         maxSize = sproutMuscleFibers();
-        fiberSize = regulateMuscleFibers();
+        Random r = new Random();
+        double d = r.nextDouble() * 0.4;
+        fiberSize = (0.2 + d) * maxSize;
+        regulateMuscleFibers();
         }
     private int sproutMuscleFibers(){
          /** create a normalized distribution of maximum muscle fiber sizes
@@ -21,21 +24,15 @@ public class MuscleFiber {
          }
          return size;
     }
-    private double regulateMuscleFibers(){
+    public void regulateMuscleFibers(){
         /** Create a unique starting fiber size.
          *  Simulate the body's natural limits on minimum and maximum fiber sizes.
          */
-        Random r = new Random();
-        double d = r.nextDouble() * 0.4;
-        double sizeFiber = (0.2 + d) * maxSize;
-        if (sizeFiber < 1 ){
-            return 1;
+        if (fiberSize < 1 ){
+            fiberSize = 1;
         }
-        if (sizeFiber > maxSize){
-            return maxSize;
-        }
-        else {
-            return sizeFiber;
+        if (fiberSize > maxSize){
+            fiberSize =  maxSize;
         }
     }
 
