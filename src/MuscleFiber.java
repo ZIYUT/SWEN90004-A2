@@ -1,7 +1,7 @@
 import java.util.Random;
 public class MuscleFiber {
     private final int maxSize;
-    private double fiberSize;
+    public double fiberSize;
 
     public MuscleFiber() {
         maxSize = sproutMuscleFibers();

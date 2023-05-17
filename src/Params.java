@@ -4,8 +4,6 @@ public class Params {
     static final public int anabolicHormoneMin = 50;
     static final public int catabolicHormoneMax = 250;
     static final public int catabolicHormoneMin = 52;
-    public int anabolicHormone = 50;
-    public int catabolicHormone = 52;
     static final public int intensity = 100;
     // Range for intensity should be 50 ~ 100.
     static final public double sleepHours = 8;
