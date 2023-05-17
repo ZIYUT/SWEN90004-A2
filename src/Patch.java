@@ -1,3 +1,5 @@
+import java.util.List;
+
 import java.util.*;
 public class Patch {
     public MuscleFiber fiber;
@@ -35,9 +37,20 @@ public class Patch {
         fiber.regulateMuscleFibers();
     }
 
-
-
     public static double log(double value, double base) {
         return Math.log(value) / Math.log(base);
+    }
+
+    public void diffuse(List<Patch> neighbours) {
+        double oldAnabolic = this.anabolicHormone;
+        double oldCatabolic = this.catabolicHormone;
+
+        this.anabolicHormone *= (1 - Params.DIFFUSION);
+        this.catabolicHormone *= (1 - Params.DIFFUSION);
+
+        for (Patch p : neighbours) {
+            p.anabolicHormone += (oldAnabolic * Params.DIFFUSION) / 8;
+            p.catabolicHormone += (oldCatabolic * Params.DIFFUSION) / 8;
+        }
     }
 }

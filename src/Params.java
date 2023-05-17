@@ -15,4 +15,6 @@ public class Params {
     // the size of the board
     public final static int BOARD_WIDTH = 35;
     public final static int BOARD_HEIGHT = 35;
+    // the percentage of diffusion
+    public final static double DIFFUSION = 0.75;
 }
