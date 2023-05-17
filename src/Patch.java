@@ -20,6 +20,7 @@ public class Patch {
     }
 
     public void developMuscle(MuscleFiber fiber){
+        fiber.fiberSize = (fiber.fiberSize - 0.2*log(fiber.fiberSize, 10));
     }
 
 
