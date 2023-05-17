@@ -12,5 +12,7 @@ public class Params {
     // Range for daysBetweenWorkouts should be 1 ~ 30 days.
     static final public int percentageOfSlowTwitchFibers = 50;
     // Range for percentageOfSlowTwitchFibers should be 0 ~ 100.
-
+    // the size of the board
+    public final static int BOARD_WIDTH = 35;
+    public final static int BOARD_HEIGHT = 35;
 }
