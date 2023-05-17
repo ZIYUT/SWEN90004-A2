@@ -35,8 +35,4 @@ public class MuscleFiber {
             fiberSize =  maxSize;
         }
     }
-
-    public static void main(String[] args) {
-        new MuscleFiber();
-    }
 }

@@ -3,9 +3,15 @@ import java.util.List;
 import java.util.*;
 public class Patch {
     public MuscleFiber fiber;
+
+    public int coordinateX;
+    public int coordinateY;
     public double anabolicHormone = 50;
     public double catabolicHormone = 52;
-
+    public Patch(int coordinateX, int coordinateY) {
+        this.coordinateX = coordinateX;
+        this.coordinateY = coordinateY;
+    }
     public void performDailyActivity(MuscleFiber fiber) {
         /**
          * Simulate hormonal effect of lifestyle with the daily activities
@@ -35,6 +41,17 @@ public class Patch {
             fiber.fiberSize = (fiber.fiberSize + 0.2 * 1.05* log(catabolicHormone, 10));
         }
         fiber.regulateMuscleFibers();
+    }
+
+    public void liftWeight(){
+        Random r = new Random();
+        int n = r.nextInt(10000);
+        if(n<(Params.intensity*Params.intensity)){
+            anabolicHormone = anabolicHormone + log(fiber.fiberSize, 10)*55;
+            catabolicHormone = catabolicHormone + log(fiber.fiberSize, 10) *44;
+        };
+    }
+    public void regulateHormones(){
     }
 
     public static double log(double value, double base) {
