@@ -11,13 +11,16 @@ public class Muscle {
     public Muscle() {
         this.width =  Params.BOARD_WIDTH;
         this.height = Params.BOARD_HEIGHT;
-        patches = new Patch[height][width];
+        patches = new Patch[width][height];
         setPatches();
     }
     public void setPatches() {
+        /**
+         *  j represents height, i represents width
+         */
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                patches[j][i] = new Patch(j,i,new MuscleFiber());
+                patches[i][j] = new Patch(i,j,new MuscleFiber());
             }
         }
     }

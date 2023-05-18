@@ -3,7 +3,7 @@ public class Params {
     static final public int anabolicHormoneMin = 50;
     static final public int catabolicHormoneMax = 250;
     static final public int catabolicHormoneMin = 52;
-    static final public int intensity = 100;
+    static final public int intensity = 70;
     // Range for intensity should be 50 ~ 100.
     static final public double sleepHours = 8;
     // Range for sleepHours should be 0.0 ~ 12.0 hours.
@@ -11,9 +11,11 @@ public class Params {
     // Range for daysBetweenWorkouts should be 1 ~ 30 days.
     static final public int percentageOfSlowTwitchFibers = 50;
     // Range for percentageOfSlowTwitchFibers should be 0 ~ 100.
-    // the size of the board
     public final static int BOARD_WIDTH = 17;
     public final static int BOARD_HEIGHT = 17;
-    // the percentage of diffusion
+    // The size of the board
     public final static double DIFFUSION = 0.75;
+    // The percentage of diffusion
+    public final static boolean LIFT = true;
+    // If it is training
 }

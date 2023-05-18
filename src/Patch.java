@@ -79,6 +79,9 @@ public class Patch {
     }
 
     public static double log(double value, double base) {
+        /**
+         *  Log algorithm method
+         */
         return Math.log(value) / Math.log(base);
     }
     public void diffuse(List<Patch> neighbours) {
@@ -98,13 +101,13 @@ public class Patch {
         ArrayList<Patch> neighbours = new ArrayList<Patch>();
 
         // find possible neighbours for given coordinate
-        for (int i = y - 1; i <= y + 1; i++) {
-            for (int j = x - 1; j <= x + 1; j++) {
+        for (int i = x - 1; i <= x + 1; i++) {
+            for (int j = y - 1; j <= y + 1; j++) {
                 // check if patch exist
-                if (i < Params.BOARD_HEIGHT && i >= 0 && j < Params.BOARD_WIDTH && j >= 0) {
+                if (i < Params.BOARD_WIDTH && i >= 0 && j < Params.BOARD_HEIGHT && j >= 0) {
                     // avoid duplicate of given coordinate
-                    if (i != y || j != x) {
-                        neighbours.add(Muscle.patches[j][i]);
+                    if (i != x || j != y) {
+                        neighbours.add(Muscle.patches[i][j]);
                     }
                 }
             }
