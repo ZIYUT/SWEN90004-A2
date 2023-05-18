@@ -1,5 +1,4 @@
 public class Params {
-    static final public double hormoneDiffuseRate = 0.75;
     static final public int anabolicHormoneMax = 200;
     static final public int anabolicHormoneMin = 50;
     static final public int catabolicHormoneMax = 250;
@@ -13,8 +12,8 @@ public class Params {
     static final public int percentageOfSlowTwitchFibers = 50;
     // Range for percentageOfSlowTwitchFibers should be 0 ~ 100.
     // the size of the board
-    public final static int BOARD_WIDTH = 35;
-    public final static int BOARD_HEIGHT = 35;
+    public final static int BOARD_WIDTH = 17;
+    public final static int BOARD_HEIGHT = 17;
     // the percentage of diffusion
     public final static double DIFFUSION = 0.75;
 }

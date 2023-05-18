@@ -28,11 +28,11 @@ public class MuscleFiber {
         /** Create a unique starting fiber size.
          *  Simulate the body's natural limits on minimum and maximum fiber sizes.
          */
-        if (fiberSize < 1 ){
-            fiberSize = 1;
+        if (this.fiberSize < 1 ){
+            this.fiberSize = 1;
         }
-        if (fiberSize > maxSize){
-            fiberSize =  maxSize;
+        if (this.fiberSize > this.maxSize){
+            this.fiberSize =  this.maxSize;
         }
     }
 }
