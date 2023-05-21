@@ -20,6 +20,7 @@ public class Patch {
          */
         this.catabolicHormone = this.catabolicHormone + 2.0 * log(this.fiber.fiberSize, 10);
         this.anabolicHormone = this.anabolicHormone + 2.5 * log(this.fiber.fiberSize,10);
+
     }
     public void sleep(){
         /**
@@ -53,7 +54,7 @@ public class Patch {
         if(n<(Params.intensity*Params.intensity)){
             this.anabolicHormone = this.anabolicHormone + log(this.fiber.fiberSize, 10)*55;
             this.catabolicHormone = this.catabolicHormone + log(this.fiber.fiberSize, 10) *44;
-        };
+        }
     }
     public void regulateHormones(){
         /**
@@ -63,6 +64,7 @@ public class Patch {
          */
         List<Patch> neighbours = getNeighbours(this.coordinateX,this.coordinateY);
         diffuse(neighbours);
+
         // Set the anabolicHormone and catabolicHormone values in the range of max and min values.
         if (this.anabolicHormone > Params.anabolicHormoneMax){
             this.anabolicHormone = Params.anabolicHormoneMax;

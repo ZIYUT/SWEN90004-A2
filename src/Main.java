@@ -1,8 +1,12 @@
+import java.io.*;
+import java.util.List;
+
 public class Main {
     private static double muscleMass;
     private static double averageAnabolic;
     private static double averageCatabolic;
     private static int tickCount;
+
     public static void setUp(Muscle muscle) {
         /**
          * To initialize the program
@@ -20,8 +24,8 @@ public class Main {
                 catabolic = catabolic + patch.catabolicHormone;
             }
         }
-        averageAnabolic = anabolic/(Params.BOARD_WIDTH*Params.BOARD_HEIGHT);
-        averageCatabolic = catabolic/(Params.BOARD_WIDTH*Params.BOARD_HEIGHT);
+        averageAnabolic = anabolic / (Params.BOARD_WIDTH * Params.BOARD_HEIGHT);
+        averageCatabolic = catabolic / (Params.BOARD_WIDTH * Params.BOARD_HEIGHT);
     }
 
     public static void go() {
@@ -34,7 +38,7 @@ public class Main {
         for (int i = 0; i < Params.BOARD_WIDTH; i++) {
             for (int j = 0; j < Params.BOARD_HEIGHT; j++) {
                 Muscle.patches[i][j].performDailyActivity();
-                if (Params.LIFT && tickCount%Params.daysBetweenWorkouts==0){
+                if (Params.LIFT && tickCount % Params.daysBetweenWorkouts == 0) {
                     Muscle.patches[i][j].liftWeight();
                 }
                 Muscle.patches[i][j].sleep();
@@ -45,23 +49,24 @@ public class Main {
                 catabolic = catabolic + Muscle.patches[i][j].catabolicHormone;
             }
         }
-        averageAnabolic = anabolic/(Params.BOARD_WIDTH*Params.BOARD_HEIGHT);
-        averageCatabolic = catabolic/(Params.BOARD_WIDTH*Params.BOARD_HEIGHT);
+        averageAnabolic = anabolic / (Params.BOARD_WIDTH * Params.BOARD_HEIGHT);
+        averageCatabolic = catabolic / (Params.BOARD_WIDTH * Params.BOARD_HEIGHT);
         tickCount++;
         //System.out.println(muscleMass);
-        //System.out.println(averageAnabolic-averageCatabolic);
-        //System.out.println(averageAnabolic);
-        //System.out.println(averageCatabolic);
+        //System.out.println(averageAnabolic - averageCatabolic);
         // System.out.println(tickCount);
 
     }
+
     public static void main(String[] args) {
         Muscle muscle = new Muscle();
         setUp(muscle);
-        while(tickCount < 1000){
+        // To set up the program
+        while (tickCount < 1000) {
+            /**
+             * Simulate 1000 days
+             */
             go();
-            //System.out.println(Muscle.patches[0][0].fiber.fiberSize);
         }
-
     }
 }
