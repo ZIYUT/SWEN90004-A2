@@ -52,6 +52,8 @@ public class Main {
         averageAnabolic = anabolic / (Params.BOARD_WIDTH * Params.BOARD_HEIGHT);
         averageCatabolic = catabolic / (Params.BOARD_WIDTH * Params.BOARD_HEIGHT);
         tickCount++;
+        //System.out.println(averageAnabolic);
+        //System.out.println(averageCatabolic);
         //System.out.println(muscleMass);
         //System.out.println(averageAnabolic - averageCatabolic);
         // System.out.println(tickCount);

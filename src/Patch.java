@@ -89,14 +89,15 @@ public class Patch {
     public void diffuse(List<Patch> neighbours) {
         double oldAnabolic = this.anabolicHormone;
         double oldCatabolic = this.catabolicHormone;
-
+        System.out.println(anabolicHormone);
         this.anabolicHormone *= (1 - Params.DIFFUSION);
         this.catabolicHormone *= (1 - Params.DIFFUSION);
 
         for (Patch p : neighbours) {
-            p.anabolicHormone += (oldAnabolic * Params.DIFFUSION) / 8;
-            p.catabolicHormone += (oldCatabolic * Params.DIFFUSION) / 8;
+            Muscle.patches[p.coordinateX][p.coordinateY].anabolicHormone += (oldAnabolic * Params.DIFFUSION) / 8;
+            Muscle.patches[p.coordinateX][p.coordinateY].catabolicHormone += (oldCatabolic * Params.DIFFUSION) / 8;
         }
+        System.out.println(anabolicHormone);
     }
     public List<Patch> getNeighbours(int x, int y) {
 
