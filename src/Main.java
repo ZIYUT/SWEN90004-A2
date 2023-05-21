@@ -1,11 +1,15 @@
 import java.io.*;
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 public class Main {
     private static double muscleMass;
     private static double averageAnabolic;
     private static double averageCatabolic;
     private static int tickCount;
+
+    private static FileWriter writer;
 
     public static void setUp(Muscle muscle) {
         /**
@@ -52,23 +56,62 @@ public class Main {
         averageAnabolic = anabolic / (Params.BOARD_WIDTH * Params.BOARD_HEIGHT);
         averageCatabolic = catabolic / (Params.BOARD_WIDTH * Params.BOARD_HEIGHT);
         tickCount++;
-        //System.out.println(averageAnabolic);
-        //System.out.println(averageCatabolic);
-        //System.out.println(muscleMass);
-        //System.out.println(averageAnabolic - averageCatabolic);
-        // System.out.println(tickCount);
 
+
+    }
+
+    public static void setUpOutputCSV(String csvFileName, String title) {
+        /**
+         * Set up an output CSV file and set the title in the first line of the file.
+         */
+        try {
+            writer = new FileWriter(csvFileName);
+            writer.append(title + " \n");
+
+        } catch (IOException e) {
+            System.out.println("Error during setUp Output CSV:" + e.getMessage());
+        }
+    }
+
+    public static void updateOutputCSV() {
+        /**
+         * Update the CSV that has been set up.
+         */
+        try {
+            writer.append(tickCount + ", " + averageAnabolic + ", "
+                    + averageCatabolic + ", " + muscleMass + " \n");
+        } catch (IOException e) {
+            System.out.println("Error during update Output CSV:" + e.getMessage());
+        }
+    }
+
+    public static void closeOutputCSV() {
+        /**
+         * Close the CSV that has been set up.
+         */
+        try {
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error during close Output CSV:" + e.getMessage());
+        }
+        writer = null;
     }
 
     public static void main(String[] args) {
         Muscle muscle = new Muscle();
         setUp(muscle);
+        String csvName = "data.csv";
+        String csvTitle = "Days/Ticks, averageAnabolic, averageCatabolic, muscleMass";
+        setUpOutputCSV(csvName, csvTitle);
         // To set up the program
-        while (tickCount < 1000) {
+        while (tickCount < 10000) {
             /**
-             * Simulate 1000 days
+             * Simulate 10000 days
              */
             go();
+            updateOutputCSV();
         }
+        closeOutputCSV();
+        System.out.println("The data for the Muscle Development model is stored in a file named: "+csvName);
     }
 }
