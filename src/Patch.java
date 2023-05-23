@@ -107,24 +107,24 @@ public class Patch {
          */
         double oldAnabolic = this.anabolicHormone;
         double oldCatabolic = this.catabolicHormone;
-        double difusionRate = 1 - Params.DIFFUSION;
+        double diffusionRate = 1 - Params.DIFFUSION;
         if (neighbours.size() == 3) {
-            this.anabolicHormone *= (1 - difusionRate*(3/8));
-            this.catabolicHormone *= (1 - difusionRate*(3/8));
+            this.anabolicHormone *= (1 - diffusionRate*(3/8));
+            this.catabolicHormone *= (1 - diffusionRate*(3/8));
         } else if (neighbours.size() == 5) {
-            this.anabolicHormone *= (1 - difusionRate*(5/8));
-            this.catabolicHormone *= (1 - difusionRate*(5/8));
+            this.anabolicHormone *= (1 - diffusionRate*(5/8));
+            this.catabolicHormone *= (1 - diffusionRate*(5/8));
         } else if (neighbours.size() == 8) {
-            this.anabolicHormone *= (1 - difusionRate);
-            this.catabolicHormone *= (1 - difusionRate);
+            this.anabolicHormone *= (1 - diffusionRate);
+            this.catabolicHormone *= (1 - diffusionRate);
         } else {
             throw new Error("Error in diffuse method, size of the Muscle should more than 2*2, " +
                     "neighbours should not in the size out of 3,5,8");
         }
 
         for (Patch p : neighbours) {
-            Muscle.patches[p.coordinateX][p.coordinateY].anabolicHormone += (oldAnabolic * difusionRate) / 8;
-            Muscle.patches[p.coordinateX][p.coordinateY].catabolicHormone += (oldCatabolic * difusionRate) / 8;
+            Muscle.patches[p.coordinateX][p.coordinateY].anabolicHormone += (oldAnabolic * diffusionRate) / 8;
+            Muscle.patches[p.coordinateX][p.coordinateY].catabolicHormone += (oldCatabolic * diffusionRate) / 8;
         }
     }
 
