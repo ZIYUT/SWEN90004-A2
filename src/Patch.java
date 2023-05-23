@@ -1,4 +1,3 @@
-import java.lang.invoke.MutableCallSite;
 import java.util.List;
 
 import java.util.*;
@@ -22,15 +21,14 @@ public class Patch {
          */
         this.catabolicHormone = this.catabolicHormone + 2.0 * log(this.fiber.fiberSize, 10);
         this.anabolicHormone = this.anabolicHormone + 2.5 * log(this.fiber.fiberSize, 10);
-
     }
 
     public void sleep() {
         /**
          * Simulate the hormonal effect of sleeping
          */
-        this.catabolicHormone = this.catabolicHormone - 0.5 * log(this.catabolicHormone, 10) * Params.sleepHours;
-        this.anabolicHormone = this.anabolicHormone - 0.48 * log(this.anabolicHormone, 10) * Params.sleepHours;
+        this.catabolicHormone = this.catabolicHormone - 0.5 * log(this.catabolicHormone, 10) * Params.SLEEP_HOURS;
+        this.anabolicHormone = this.anabolicHormone - 0.48 * log(this.anabolicHormone, 10) * Params.SLEEP_HOURS;
     }
 
     public void developMuscle() {
@@ -41,7 +39,8 @@ public class Patch {
         this.fiber.fiberSize = (this.fiber.fiberSize - 0.2 * log(this.catabolicHormone, 10));
         if (log(this.anabolicHormone, 10) <= (1.05 * log(this.catabolicHormone, 10))) {
             this.fiber.fiberSize = (this.fiber.fiberSize + 0.2 * log(this.anabolicHormone, 10));
-        } else {
+        }
+        else {
             this.fiber.fiberSize = (this.fiber.fiberSize + 0.2 * 1.05 * log(this.catabolicHormone, 10));
         }
         this.fiber.regulateMuscleFibers();
@@ -53,7 +52,7 @@ public class Patch {
          */
         Random r = new Random();
         int n = r.nextInt(10000);
-        if (n < (Params.intensity * Params.intensity)) {
+        if (n < (Params.INTENSITY * Params.INTENSITY)) {
             this.anabolicHormone = this.anabolicHormone + log(this.fiber.fiberSize, 10) * 55;
             this.catabolicHormone = this.catabolicHormone + log(this.fiber.fiberSize, 10) * 44;
         }
@@ -69,17 +68,17 @@ public class Patch {
         diffuse(neighbours);
 
         // Set the anabolicHormone and catabolicHormone values in the range of max and min values.
-        if (this.anabolicHormone > Params.anabolicHormoneMax) {
-            this.anabolicHormone = Params.anabolicHormoneMax;
+        if (this.anabolicHormone > Params.ANABOLIC_HORMONE_MAX) {
+            this.anabolicHormone = Params.ANABOLIC_HORMONE_MAX;
         }
-        if (this.anabolicHormone < Params.anabolicHormoneMin) {
-            this.anabolicHormone = Params.anabolicHormoneMin;
+        if (this.anabolicHormone < Params.ANABOLIC_HORMONE_MIN) {
+            this.anabolicHormone = Params.ANABOLIC_HORMONE_MIN;
         }
-        if (this.catabolicHormone > Params.catabolicHormoneMax) {
-            this.catabolicHormone = Params.catabolicHormoneMax;
+        if (this.catabolicHormone > Params.CATABOLIC_HORMONE_MAX) {
+            this.catabolicHormone = Params.CATABOLIC_HORMONE_MAX;
         }
-        if (this.catabolicHormone < Params.catabolicHormoneMin) {
-            this.catabolicHormone = Params.catabolicHormoneMin;
+        if (this.catabolicHormone < Params.CATABOLIC_HORMONE_MIN) {
+            this.catabolicHormone = Params.CATABOLIC_HORMONE_MIN;
         }
     }
 
@@ -108,23 +107,24 @@ public class Patch {
          */
         double oldAnabolic = this.anabolicHormone;
         double oldCatabolic = this.catabolicHormone;
+        double difusionRate = 1 - Params.DIFFUSION;
         if (neighbours.size() == 3) {
-            this.anabolicHormone *= (1 - Params.DIFFUSION*(3/8));
-            this.catabolicHormone *= (1 - Params.DIFFUSION*(3/8));
+            this.anabolicHormone *= (1 - difusionRate*(3/8));
+            this.catabolicHormone *= (1 - difusionRate*(3/8));
         } else if (neighbours.size() == 5) {
-            this.anabolicHormone *= (1 - Params.DIFFUSION*(5/8));
-            this.catabolicHormone *= (1 - Params.DIFFUSION*(5/8));
+            this.anabolicHormone *= (1 - difusionRate*(5/8));
+            this.catabolicHormone *= (1 - difusionRate*(5/8));
         } else if (neighbours.size() == 8) {
-            this.anabolicHormone *= (1 - Params.DIFFUSION);
-            this.catabolicHormone *= (1 - Params.DIFFUSION);
+            this.anabolicHormone *= (1 - difusionRate);
+            this.catabolicHormone *= (1 - difusionRate);
         } else {
             throw new Error("Error in diffuse method, size of the Muscle should more than 2*2, " +
                     "neighbours should not in the size out of 3,5,8");
         }
 
         for (Patch p : neighbours) {
-            Muscle.patches[p.coordinateX][p.coordinateY].anabolicHormone += (oldAnabolic * Params.DIFFUSION) / 8;
-            Muscle.patches[p.coordinateX][p.coordinateY].catabolicHormone += (oldCatabolic * Params.DIFFUSION) / 8;
+            Muscle.patches[p.coordinateX][p.coordinateY].anabolicHormone += (oldAnabolic * difusionRate) / 8;
+            Muscle.patches[p.coordinateX][p.coordinateY].catabolicHormone += (oldCatabolic * difusionRate) / 8;
         }
     }
 

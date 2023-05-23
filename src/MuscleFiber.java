@@ -1,24 +1,24 @@
 import java.util.Random;
 public class MuscleFiber {
-    private final int maxSize;
+    private final int MAX_SIZE;
     public double fiberSize;
 
     public MuscleFiber() {
-        maxSize = sproutMuscleFibers();
+        MAX_SIZE = sproutMuscleFibers();
         Random r = new Random();
         double d = r.nextDouble() * 0.4;
-        fiberSize = (0.2 + d) * maxSize;
+        fiberSize = (0.2 + d) * MAX_SIZE;
         regulateMuscleFibers();
         }
     private int sproutMuscleFibers(){
-         /** create a normalized distribution of maximum muscle fiber sizes
+         /** Create a normalized distribution of maximum muscle fiber sizes
          with median dependent on % of slow twitch fibers.
          */
          int size = 4;
          for (int i=0; i <20; i++) {
             Random r = new Random();
             int n = r.nextInt(100);
-            if (n > Params.percentageOfSlowTwitchFibers){
+            if (n > Params.PERCENTAGE_OF_SLOW_TWITCH_FIBERS){
                 size ++;
             }
          }
@@ -31,8 +31,8 @@ public class MuscleFiber {
         if (this.fiberSize < 1 ){
             this.fiberSize = 1;
         }
-        if (this.fiberSize > this.maxSize){
-            this.fiberSize =  this.maxSize;
+        if (this.fiberSize > this.MAX_SIZE){
+            this.fiberSize =  this.MAX_SIZE;
         }
     }
 }

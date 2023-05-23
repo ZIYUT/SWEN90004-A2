@@ -1,15 +1,20 @@
+/**
+ *
+ *
+ */
+
 public class Params {
-    static final public int anabolicHormoneMax = 200;
-    static final public int anabolicHormoneMin = 50;
-    static final public int catabolicHormoneMax = 250;
-    static final public int catabolicHormoneMin = 52;
-    static final public int intensity = 70;
+    static final public int ANABOLIC_HORMONE_MAX = 200;
+    static final public int ANABOLIC_HORMONE_MIN = 50;
+    static final public int CATABOLIC_HORMONE_MAX = 250;
+    static final public int CATABOLIC_HORMONE_MIN = 52;
+    static final public int INTENSITY = 75;
     // Range for intensity should be 50 ~ 100.
-    static final public double sleepHours = 8;
+    static final public double SLEEP_HOURS = 8;
     // Range for sleepHours should be 0.0 ~ 12.0 hours.
-    static final public int daysBetweenWorkouts = 5;
+    static final public int DAYS_BETWEEN_WORKOUTS = 7;
     // Range for daysBetweenWorkouts should be 1 ~ 30 days.
-    static final public int percentageOfSlowTwitchFibers = 50;
+    static final public int PERCENTAGE_OF_SLOW_TWITCH_FIBERS = 50;
     // Range for percentageOfSlowTwitchFibers should be 0 ~ 100.
     public final static int BOARD_WIDTH = 17;
     public final static int BOARD_HEIGHT = 17;

@@ -1,9 +1,13 @@
-import java.io.*;
-import java.util.List;
+/**
+ * Name: ZIYU TIAN(1284270),  YONGLE CHEN(1347396), JIYANG XIN(1322761)
+ * This is the running class for the program.
+ *
+ */
 
-import static java.util.Objects.isNull;
+import java.io.*;
 
 public class Main {
+
     private static double muscleMass;
     private static double averageAnabolic;
     private static double averageCatabolic;
@@ -19,8 +23,8 @@ public class Main {
         tickCount = 0;
         double anabolic = 0;
         double catabolic = 0;
-        for (int i = 0; i < muscle.width; i++) {
-            for (int j = 0; j < muscle.height; j++) {
+        for (int i = 0; i < muscle.WIDTH; i++) {
+            for (int j = 0; j < muscle.HEIGHT; j++) {
                 Patch patch = Muscle.patches[i][j];
                 patch.regulateHormones();
                 muscleMass = muscleMass + patch.fiber.fiberSize;
@@ -42,7 +46,7 @@ public class Main {
         for (int i = 0; i < Params.BOARD_WIDTH; i++) {
             for (int j = 0; j < Params.BOARD_HEIGHT; j++) {
                 Muscle.patches[i][j].performDailyActivity();
-                if (Params.LIFT && tickCount % Params.daysBetweenWorkouts == 0) {
+                if (Params.LIFT && tickCount % Params.DAYS_BETWEEN_WORKOUTS == 0) {
                     Muscle.patches[i][j].liftWeight();
                 }
                 Muscle.patches[i][j].sleep();
@@ -56,8 +60,6 @@ public class Main {
         averageAnabolic = anabolic / (Params.BOARD_WIDTH * Params.BOARD_HEIGHT);
         averageCatabolic = catabolic / (Params.BOARD_WIDTH * Params.BOARD_HEIGHT);
         tickCount++;
-
-
     }
 
     public static void setUpOutputCSV(String csvFileName, String title) {
