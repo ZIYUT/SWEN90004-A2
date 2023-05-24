@@ -109,11 +109,11 @@ public class Patch {
         double oldCatabolic = this.catabolicHormone;
         double diffusionRate = 1 - Params.DIFFUSION;
         if (neighbours.size() == 3) {
-            this.anabolicHormone *= (1 - diffusionRate*(3/8));
-            this.catabolicHormone *= (1 - diffusionRate*(3/8));
+            this.anabolicHormone *= (1 - diffusionRate*3/8);
+            this.catabolicHormone *= (1 - diffusionRate*3/8);
         } else if (neighbours.size() == 5) {
-            this.anabolicHormone *= (1 - diffusionRate*(5/8));
-            this.catabolicHormone *= (1 - diffusionRate*(5/8));
+            this.anabolicHormone *= (1 - diffusionRate*5/8);
+            this.catabolicHormone *= (1 - diffusionRate*5/8);
         } else if (neighbours.size() == 8) {
             this.anabolicHormone *= (1 - diffusionRate);
             this.catabolicHormone *= (1 - diffusionRate);
