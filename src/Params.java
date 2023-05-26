@@ -13,10 +13,11 @@ public class Params {
     static final public int DAYS_BETWEEN_WORKOUTS = 5;// Range for daysBetweenWorkouts should be 1 ~ 30 days.
     static final public int PERCENTAGE_OF_SLOW_TWITCH_FIBERS = 50;// Range for percentageOfSlowTwitchFibers should be 0 ~ 100.
 
-    // The size of the board
+    // The size of the board, and there are requests that BOARD_WIDTH>=2 and BOARD_HEIGHT>=2,
+    // otherwise it cause bug when diffuse
     public final static int BOARD_WIDTH = 17;
     public final static int BOARD_HEIGHT = 17;
 
-    public final static double DIFFUSION = 0.75;// The percentage of diffusion
+    public final static double DIFFUSION = 0.75;// The percentage of kept while diffusion
     public final static boolean LIFT = true;// If it is training
 }

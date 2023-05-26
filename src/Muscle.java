@@ -22,6 +22,7 @@ public class Muscle {
     }
     public void setPatches() {
         /**
+         *  initial set up for the patches in muscle
          *  j represents height, i represents width
          */
         for (int i = 0; i < WIDTH; i++) {
