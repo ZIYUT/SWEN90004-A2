@@ -1,9 +1,20 @@
+/**
+ * Name: ZIYU TIAN(1284270),  YONGLE CHEN(1347396), JIYANG XIN(1322761)
+ * It represent a muscle fiber in this model,
+ * Which contains the size and the max size of the fiber
+ * max size will not change after be set up in this model, but each fiber may have different max size
+ *
+ */
 import java.util.Random;
+
 public class MuscleFiber {
-    private final int MAX_SIZE;
-    public double fiberSize;
+    private final int MAX_SIZE;// MAX_SIZE of the fiber size
+    public double fiberSize;// fiber size represent the development of the fiber, which more size means better development.
 
     public MuscleFiber() {
+        /**
+         * set up the initial values of a muscle fiber
+         */
         MAX_SIZE = sproutMuscleFibers();
         Random r = new Random();
         double d = r.nextDouble() * 0.4;

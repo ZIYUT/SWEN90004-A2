@@ -1,14 +1,22 @@
+/**
+ * Name: ZIYU TIAN(1284270),  YONGLE CHEN(1347396), JIYANG XIN(1322761)
+ * a patch of the Model
+ * In this muscle development model, a patch include a muscle fiber and two hormones (anabolic and catabolic)
+ */
 import java.util.List;
 
 import java.util.*;
 
 public class Patch {
-    public MuscleFiber fiber;
-    public int coordinateX;
-    public int coordinateY;
-    public double anabolicHormone = 50;
-    public double catabolicHormone = 52;
+    public MuscleFiber fiber;// Muscle Fiber
+    public int coordinateX;// the position of the patch in the model
+    public int coordinateY;// the position of the patch in the model
+    public double anabolicHormone = 50;// anabolic Hormone
+    public double catabolicHormone = 52;// catabolic Hormone
     public Patch(int coordinateX, int coordinateY, MuscleFiber fiber) {
+        /**
+         * set up the position and Muscle Fiber of the fiber
+         */
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
         this.fiber = fiber;
@@ -97,7 +105,8 @@ public class Patch {
          * so the size of neighbours should be 3(conner),5(edge),8(Interior) respectively.
          *
          * Tells each patch to give equal shares of (number * 100) percent of the value of patch-variable
-         * to its eight neighboring patches. number(it is from Params.DIFFUSION) should be between 0 and 1.
+         * to its eight neighboring patches.
+         * the number(it is from Params.DIFFUSION in this diffuse implement) should be between 0 and 1.
          * Regardless of topology the sum of patch-variable will be conserved across the world.
          * (If a patch has fewer than eight neighbors, each neighbor still gets an eighth share;
          * the patch keeps any leftover shares.)
@@ -105,9 +114,11 @@ public class Patch {
          * Note that this is an observer command only, even though you might expect it to be a patch command.
          * (The reason is that it acts on all the patches at once -- patch commands act on individual patches.)
          */
-        double oldAnabolic = this.anabolicHormone;
-        double oldCatabolic = this.catabolicHormone;
-        double diffusionRate = 1 - Params.DIFFUSION;
+        double oldAnabolic = this.anabolicHormone;//oldAnabolic
+        double oldCatabolic = this.catabolicHormone;//oldAnabolic
+        double diffusionRate = 1 - Params.DIFFUSION;//the number
+
+        //patch keeps any leftover shares if a patch has fewer than eight neighbors
         if (neighbours.size() == 3) {
             this.anabolicHormone *= (1 - diffusionRate*3/8);
             this.catabolicHormone *= (1 - diffusionRate*3/8);
@@ -122,6 +133,7 @@ public class Patch {
                     "neighbours should not in the size out of 3,5,8");
         }
 
+        //each neighbor gets an eighth share;
         for (Patch p : neighbours) {
             Muscle.patches[p.coordinateX][p.coordinateY].anabolicHormone += (oldAnabolic * diffusionRate) / 8;
             Muscle.patches[p.coordinateX][p.coordinateY].catabolicHormone += (oldCatabolic * diffusionRate) / 8;
@@ -129,6 +141,11 @@ public class Patch {
     }
 
     public List<Patch> getNeighbours(int x, int y) {
+        /**
+         * get 8 Neighbours of a patch at the position (x,y)
+         * a patch at conor return 3 Neighbours
+         * a patch at edge return 5 Neighbours
+         */
 
         ArrayList<Patch> neighbours = new ArrayList<Patch>();
 
