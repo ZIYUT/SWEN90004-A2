@@ -6,6 +6,12 @@
  * the hormones will influence the development of each muscle fibers that all muscle fibers make up the muscle.
  * the hormones will be influenced by daily activities, exercise(lifting in this model), sleep hours, and so on.
  *
+ * Instructions to build and run this muscle development model (pass the test in Java SE 19)
+ * 1. using terminal and get into the src folder where you can find file Main.java in that folder
+ * 2. compile file in terminal by typing: javac .\Main.java
+ * 3. run main in terminal by typing: java Main
+ * 4. see the output in an output file named: data.csv
+ *
  * Include initial value set up for the model in setUp()
  * and the execution of each day for the model in go()
  *
